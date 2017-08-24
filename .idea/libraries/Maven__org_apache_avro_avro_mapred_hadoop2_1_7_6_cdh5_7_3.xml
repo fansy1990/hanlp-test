@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.avro:avro-mapred:hadoop2:1.7.6-cdh5.7.3">
+    <CLASSES>
+      <root url="jar://D:/.m2/local_repo/org/apache/avro/avro-mapred/1.7.6-cdh5.7.3/avro-mapred-1.7.6-cdh5.7.3-hadoop2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/.m2/local_repo/org/apache/avro/avro-mapred/1.7.6-cdh5.7.3/avro-mapred-1.7.6-cdh5.7.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/.m2/local_repo/org/apache/avro/avro-mapred/1.7.6-cdh5.7.3/avro-mapred-1.7.6-cdh5.7.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
