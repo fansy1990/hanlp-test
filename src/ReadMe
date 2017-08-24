@@ -1,0 +1,11 @@
+
+参考https://github.com/hankcs/HanLP
+
+测试第一步：
+1. 分词测试一共有四个：HighSpeed ,Standard, NLP , IndexTokenizer ;
+2. 比较符合常规使用的是：HighSpeed ,Standard, NLP，其中HighSpeed默认不支持添加自定义词典；
+   Standard，NLP默认支持添加自定义词典，通过CustomDictionary添加；
+3. 分词后，可以通过CoreStopWordDictionary.apply(terms)来对分词结果去除停用词；
+
+测试第二步：
+1. 引入Spark相关类库，测试Spark相关TF-IDF,Word2Vec等方法；
