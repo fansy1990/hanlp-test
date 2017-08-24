@@ -27,7 +27,7 @@ object SparkUtil {
       System.setProperty("hadoop.home.dir", winutil_path)
     }
     val conf = if(testOrNot){
-      new SparkConf().setAppName(appName).setMaster("local[2]")
+      new SparkConf().setAppName(appName).setMaster("local[4]")
     }else{
       new SparkConf().setAppName(appName)
     }
