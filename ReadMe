@@ -9,3 +9,8 @@
 
 测试第二步：
 1. 引入Spark相关类库，测试Spark相关TF-IDF,Word2Vec等方法；
+
+
+测试第三步：
+1. 引入中文语料：http://www.threedweb.cn/thread-1288-1-1.html
+2.
