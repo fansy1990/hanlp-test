@@ -43,4 +43,7 @@ object SparkUtil {
   def getSQLContext(appName:String , testOrNot:Boolean):SQLContext ={
     new SQLContext(getSparkContext(appName,testOrNot))
   }
+  def getSQLContext(sc:SparkContext):SQLContext ={
+    new SQLContext(sc)
+  }
 }

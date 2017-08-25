@@ -9,13 +9,15 @@ import java.util.List;
  * Created by fansy on 2017/8/24.
  */
 public class TransformEncodingToOne {
+
     public static void main(String[] args) {
         String parentStr = "data/文本分类语料库";
         File dataParent = new File(parentStr);
 
         List<File> files = getFiles(parentStr);
         String output ="data/allinone/data.txt" ;
-        transform(files,output);
+
+        System.out.println(transform(files,output));
     }
 
     public static List<File> getFiles(String fileStr){
@@ -46,7 +48,7 @@ public class TransformEncodingToOne {
                 isr = new InputStreamReader(new FileInputStream(file), "GBK");
                 reader = new BufferedReader(isr);
                 String line = null;
-                out.append(file.getName()+"\t");
+                out.append(file.getName().replaceAll(".TXT",".txt")+"\t");// 后缀改为小写
                 // 一次读入一行，直到读入null为文件结束
                 while ((line = reader.readLine()) != null) {
                     out.append(line + " ");
