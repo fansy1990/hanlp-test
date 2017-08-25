@@ -53,6 +53,7 @@ object TFIDFKmeansInOneFile {
      val idfModel = idf.fit(featurizedData)
      val rescaledData = idfModel.transform(featurizedData).cache()
 
+//     rescaledData.show(3)
 
      // 4. kmeans 聚类
      // Trains a k-means model.
@@ -65,7 +66,7 @@ object TFIDFKmeansInOneFile {
      println(s"Within Set Sum of Squared Errors = $WSSSE")
 
      val output = model.transform(rescaledData)
-     output.show(3)
+//     output.show(3)
 
      // 5. 计算正确率
      // 正确率计算方式：
@@ -80,7 +81,7 @@ object TFIDFKmeansInOneFile {
 
      val partitionData = outputRdd.partitionBy(FileNamePartitioner(fileNameFirstCharMap) )
 
-      fileNameFirstCharMap.foreach(println(_))
+//      fileNameFirstCharMap.foreach(println(_))
      // firstCharInFileName , firstCharInFileName - predictType
      val combined = partitionData.map(x =>( (x._1.charAt(0), Integer.parseInt(x._1.charAt(0)+"") - x._2),1) )
        .mapPartitions{f => var aMap = Map[(Char,Int),Int]();

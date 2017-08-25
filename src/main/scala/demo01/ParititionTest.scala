@@ -9,9 +9,11 @@ import util.SparkUtil
  */
 object ParititionTest {
    def main (args: Array[String]){
-    val t = List(("121.txt",0),("122.txt",0),("123.txt",3),("124.txt",0),("125.txt",0),("126.txt",1),
+    val t = List(
+      ("121.txt",0),("122.txt",0),("123.txt",3),("124.txt",0),("125.txt",0),("126.txt",1),
       ("221.txt",3),("222.txt",4),("223.txt",3),("224.txt",3),("225.txt",3),("226.txt",1),
-      ("421.txt",4),("422.txt",4),("4.txt",3),("41.txt",3),("43.txt",4),("426.txt",1))
+      ("421.txt",4),("422.txt",4),("4.txt",3),("41.txt",3),("43.txt",4),("426.txt",1)
+    )
      val sc = SparkUtil.getSparkContext("test partitioner",true)
 
      val data = sc.parallelize(t)
@@ -39,6 +41,7 @@ object ParititionTest {
      }
 
      val result = combined.collect()
+     result.foreach(println(_))
       for(re <- result ){
         println("文档"+re._1+"开头的 文档总数："+ re._2+",分类正确的有："+re._3+",分类正确率是："+(re._3*100.0/re._2)+"%")
       }
@@ -52,6 +55,5 @@ case class MyPartitioner(file_index:Map[Char,Long]) extends Partitioner{
   override def getPartition(key: Any): Int = key match {
     case _ => file_index.getOrElse(key.toString.charAt(0),0L).toInt
   }
-
   override def numPartitions: Int = file_index.size
 }
