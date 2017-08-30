@@ -17,14 +17,14 @@ import scala.collection.JavaConversions._
   * Created by fansy on 2017/8/25.
   */
 
-object TFIDFKmeansInOneFile {
+object Word2VecKmeansInOneFile {
    val data = "data/allinone/data.txt"
    def main(args: Array[String]) {
 //    if(args.length!=4){
 //      println("Usage: demo03_tf_idf_kmeans.TFIDFKmeansInOneFile <input_data> <numFeatures> <> <>")
 //    }
 
-     val (input_data,wordVectorSize,minCount,k,testOrNot) =(data,2000,0,10,true)
+     val (input_data,wordVectorSize,minCount,k,testOrNot) =(data,200,5,10,true)
 
      val sc = SparkUtil.getSparkContext("Kmeans use word2vec",testOrNot)
       val sqlContext = SparkUtil.getSQLContext(sc)
@@ -55,7 +55,7 @@ object TFIDFKmeansInOneFile {
      println("calculating word2vec...")
      val word2Vec = new Word2Vec()
        .setInputCol("sentence_words")
-       .setOutputCol("result")
+       .setOutputCol("features")
        .setVectorSize(wordVectorSize)
        .setMinCount(minCount)
      val word2VecModel = word2Vec.fit(docs)
@@ -73,7 +73,7 @@ object TFIDFKmeansInOneFile {
      println(s"Within Set Sum of Squared Errors = $WSSSE")
 
      val output = model.transform(rescaledData)
-//     output.show(3)
+     output.show(3)
 
      // 5. 计算正确率
      // 正确率计算方式：
@@ -81,8 +81,8 @@ object TFIDFKmeansInOneFile {
      // 2) 每个群组中使用模型预测的大部分都是正确的，所以分组正确的第一个字符减去预测值，应该是一个固定的值；
      //    其他不相等的就是分组错的了；
     // DataFrame不好处理，采用RDD处理
-     // |fileName|      sentence_words|         rawFeatures|            features|prediction|
-     val outputRdd = output.rdd.map(row =>(row.getString(0),row.getInt(4)))
+     // |fileName|      sentence_words|                  features|prediction|
+     val outputRdd = output.rdd.map(row =>(row.getString(0),row.getInt(3)))
 
      val fileNameFirstCharMap = outputRdd.map(_._1.charAt(0)).distinct().zipWithIndex().collect().toMap
 
