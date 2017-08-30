@@ -9,6 +9,7 @@ import org.apache.spark.ml.feature.{Word2Vec, IDF, HashingTF}
 import util.SparkUtil
 import scala.collection.JavaConversions._
 /**
+ * 正确率不高
   * 使用Word2Vec对文件进行向量化，并使用kmeans来对文本进行聚类
   * 数据数据使用一个文件输入
  * 参数解释：
@@ -20,9 +21,6 @@ import scala.collection.JavaConversions._
 object Word2VecKmeansInOneFile {
    val data = "data/allinone/data.txt"
    def main(args: Array[String]) {
-//    if(args.length!=4){
-//      println("Usage: demo03_tf_idf_kmeans.TFIDFKmeansInOneFile <input_data> <numFeatures> <> <>")
-//    }
 
      val (input_data,wordVectorSize,minCount,k,testOrNot) =(data,200,5,10,true)
 
