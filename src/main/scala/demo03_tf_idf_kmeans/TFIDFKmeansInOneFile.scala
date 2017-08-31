@@ -20,11 +20,13 @@ import scala.collection.JavaConversions._
 object TFIDFKmeansInOneFile {
    val data = "data/allinone/data.txt"
    def main(args: Array[String]) {
-//    if(args.length!=4){
-//      println("Usage: demo03_tf_idf_kmeans.TFIDFKmeansInOneFile <input_data> <numFeatures> <> <>")
-//    }
+    if(args.length!=4){
+      println("Usage: demo03_tf_idf_kmeans.TFIDFKmeansInOneFile <input_data> <numFeatures> <k> <testOrNot>")
+      System.exit(-1)
+    }
 
-     val (input_data,numFeatures,k,testOrNot) =(data,2000,10,true)
+//     val (input_data,numFeatures,k,testOrNot) =(data,2000,10,true)
+     val (input_data,numFeatures,k,testOrNot) =(args(0),args(1).toInt,args(2).toInt,args(3).toBoolean)
 
      val sc = SparkUtil.getSparkContext("Kmeans use tf-idf",testOrNot)
       val sqlContext = SparkUtil.getSQLContext(sc)

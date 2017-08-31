@@ -14,3 +14,9 @@
 测试第三步：
 1. 引入中文语料：http://www.threedweb.cn/thread-1288-1-1.html, 原语料库中“环境类”数据中有一个文件是n99.txt 改为5299.txt
 2.
+
+
+
+注意事项：
+1. 如果需要使用spark-submit的方式运行，则需要把hanlp的jar包放入到maven打包的jar包中
+（如果maven可以直接把相关class打包到jar中，那就需要这样做了）,参考pom文件即可；
